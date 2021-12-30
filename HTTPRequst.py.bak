@@ -338,15 +338,6 @@ class HTTP_Proxy:
         except Exception as ex:
             res.ERROR = f"ERROR: {ex}!"
         return res
-        
-class PROXY_Read_Write:
-    def Read(self,fileProxy, code=""):
-        with open(fileProxy, "r", status_code="") as file1:
-            # итерация по строкам
-            for line in file1:
-                print(line.strip())
-    def Write(self):
-        pass
 
 class ResponseResult(object):
     """Результаты Ответа Запроса"""
