@@ -1,0 +1,7 @@
+requests
+requests[socks]
+requests[security]
+requests-toolbelt
+bs4
+lxml
+html5lib
