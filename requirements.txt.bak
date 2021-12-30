@@ -1,6 +1,5 @@
 requests
 requests[socks]
-requesocks
 requests[security]
 requests-toolbelt
 bs4
