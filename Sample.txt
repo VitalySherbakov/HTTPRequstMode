@@ -1,0 +1,90 @@
+import os,sys
+from HTTPRequst import HTTP, HTTP_Proxy, ProxyInfo, SelectTypeRequst
+import requests
+
+os.system("title Test Send")
+print("Test Send")
+
+
+
+url_res="https://localhost:5001/mailing/server/mail/FGDS"
+handlers = {
+        "Cache-Control":"no-cache",
+        "Content-Type": "application/json;", #multipart/form-data; application/x-www-form-urlencoded application/json
+        "Accept":"*/*",
+        "Accept-Encoding":"gzip, deflate, br",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
+        "Connection": "keep-alive",
+        
+    }
+http_proc = HTTP()
+
+def Getlist():
+    respon = http_proc.GET(Url=url_res,SertVer=False,Headers=handlers)
+    if respon.IsSuccess == True:
+        print(respon.Content)
+    else:
+        print("Запрос не прошел!")
+
+def AddObj():
+    data={
+    "FindCommand": "name,mobile",
+    "TitleMsg":"Письмо",
+    "TextMsg":"3куцацуацу",
+    "DataInfoFind":"{name: 'Коля5', mobile: '3890232399'}"
+    }
+    selecttype=SelectTypeRequst.JSON.name
+    print(f"{selecttype}")
+    respon = http_proc.POST(Url=url_res,Select=selecttype,SertVer=False,Data=data,Headers=handlers)
+    if respon.IsSuccess == True:
+        print(respon.Content)
+    else:
+        print("Запрос не прошел!")
+
+def DelObj(id):
+    url_res=f"https://localhost:5001/mailing/server/mail/FGDS/{id}"
+    print(f"URL: {url_res}")
+    data={
+    "Id": f"{id}",
+    "FindCommand": "name,mobile",
+    "TitleMsg":"Письмо",
+    "TextMsg":"3куцацуацу",
+    "DataInfoFind":"{name: 'Коля5', mobile: '3890232399'}"
+    }
+    selecttype=SelectTypeRequst.JSON.name
+    print(f"obj: {data}")
+    respon = http_proc.DELETE(Url=url_res,Select=selecttype,SertVer=False,Headers=handlers)
+    if respon.IsSuccess == True:
+        print(respon.Content)
+    else:
+        print("Запрос не прошел!")
+
+def UpObj(id):
+    url_res=f"https://localhost:5001/mailing/server/mail/FGDS/{id}"
+    print(f"URL: {url_res}")
+    data={
+    "FindCommand": "name,mobile",
+    "TitleMsg":"Письмо2",
+    "TextMsg":"3куцацуацу2",
+    "DataInfoFind":"{name: 'Коля8', mobile: '90078657567'}"
+    }
+    selecttype=SelectTypeRequst.JSON.name
+    print(f"obj: {data}")
+    respon = http_proc.UPDATE(Url=url_res,Data=data,Select=selecttype,SertVer=False,Headers=handlers)
+    if respon.IsSuccess == True:
+        print(respon.Content)
+    else:
+        print("Запрос не прошел!")
+def GetElem():
+    url_res="https://localhost:5001/mailing/server/mail/FGDS"
+    url_res2 = f"{url_res}/b8bbfadf-03cf-4967-842c-33b44d15b67d"
+    print(f"URL: {url_res2}")
+    respon = http_proc.GET(Url=url_res2,SertVer=False,Headers=handlers)
+    if respon.IsSuccess == True:
+        print(respon.Content)
+    else:
+        print("Запрос не прошел!")
+#Getlist()
+#AddObj()
+#GetElem()
+UpObj("a9a4c90e-a9ba-4bc8-8d87-8a8a9d1efb4c")
