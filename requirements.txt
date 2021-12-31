@@ -1,6 +1,11 @@
+requesocks
+pysocks
+Pillow
+pipwin
+auto-py-to-exe
 requests
 requests[socks]
-requesocks
+#requesocks-0.10.8.tar.gz
 requests[security]
 requests-toolbelt
 bs4
